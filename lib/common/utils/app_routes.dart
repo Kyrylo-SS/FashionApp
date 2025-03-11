@@ -1,4 +1,5 @@
 import 'package:testdf/src/entrypoint/views/entrypoint.dart';
+import 'package:testdf/src/onboarding/views/onboarding_page.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,10 +19,10 @@ final GoRouter _router = GoRouter(
       path: '/home',
       builder: (context, state) => const AppEntryPoint(),
     ),
-    // GoRoute(
-    //   path: '/onboarding',
-    //   builder: (context, state) => const OnBoardingScreen(),
-    // ),
+    GoRoute(
+      path: '/onboarding',
+      builder: (context, state) => const OnBoardingScreen(),
+    ),
     // GoRoute(
     //   path: '/review',
     //   builder: (context, state) => const ReviewsPage(),
