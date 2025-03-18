@@ -5,7 +5,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:testdf/common/utils/app_routes.dart';
 import 'package:testdf/common/utils/environment.dart';
 import 'package:testdf/common/utils/kstrings.dart';
+import 'package:testdf/src/entrypoint/controllers/bottom_tab_notifier.dart';
+import 'package:testdf/src/onboarding/controllers/onboarding_notifier.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +16,15 @@ void main() async {
   await dotenv.load(fileName: Environment.fileName);
 
   await GetStorage.init();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => OnboardingNotifier()),
+        ChangeNotifierProvider(create: (_) => TabIndexNotifier()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -45,7 +56,6 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
-
   final String title;
 
   @override
@@ -53,8 +63,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

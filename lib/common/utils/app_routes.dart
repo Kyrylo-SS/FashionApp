@@ -1,24 +1,18 @@
+import 'package:testdf/src/auth/views/login_screen.dart';
 import 'package:testdf/src/entrypoint/views/entrypoint.dart';
-import 'package:testdf/src/onboarding/views/onboarding_page.dart';
+import 'package:testdf/src/onboarding/views/onboarding_screen.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-
 final GoRouter _router = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: '/',
   routes: [
-    GoRoute(
-      path: '/',
-      builder: (context, state) => const SplashScreen(),
-    ),
-    GoRoute(
-      path: '/home',
-      builder: (context, state) => const AppEntryPoint(),
-    ),
+    GoRoute(path: '/', builder: (context, state) => const SplashScreen()),
+    GoRoute(path: '/home', builder: (context, state) => AppEntryPoint()),
     GoRoute(
       path: '/onboarding',
       builder: (context, state) => const OnBoardingScreen(),
@@ -47,10 +41,7 @@ final GoRouter _router = GoRouter(
     //   path: '/orders',
     //   builder: (context, state) => const OrdersPage(),
     // ),
-    // GoRoute(
-    //   path: '/login',
-    //   builder: (context, state) => const LoginPage(),
-    // ),
+    GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
     // GoRoute(
     //   path: '/register',
     //   builder: (context, state) => const RegistrationPage(),
