@@ -5,8 +5,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:testdf/common/utils/app_routes.dart';
 import 'package:testdf/common/utils/environment.dart';
 import 'package:testdf/common/utils/kstrings.dart';
+import 'package:testdf/src/categories/controllers/category_notifier.dart';
 import 'package:testdf/src/entrypoint/controllers/bottom_tab_notifier.dart';
+import 'package:testdf/src/home/controllers/home_tab_notifier.dart';
 import 'package:testdf/src/onboarding/controllers/onboarding_notifier.dart';
+import 'package:testdf/src/products/controllers/product_notifier.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +24,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => OnboardingNotifier()),
         ChangeNotifierProvider(create: (_) => TabIndexNotifier()),
+        ChangeNotifierProvider(create: (_) => CategoryNotifier()),
+        ChangeNotifierProvider(create: (_) => HomeTabNotifier()),
+        ChangeNotifierProvider(create: (_) => ProductNotifier()),
       ],
       child: const MyApp(),
     ),

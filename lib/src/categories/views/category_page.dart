@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:testdf/common/utils/kcolors.dart';
-import 'package:testdf/common/utils/kstrings.dart';
 import 'package:testdf/common/widgets/app_style.dart';
+import 'package:testdf/common/widgets/back_button.dart';
 import 'package:testdf/common/widgets/reusable_text.dart';
-import 'package:testdf/src/products/widgets/explore_products.dart';
+import 'package:testdf/src/categories/controllers/category_notifier.dart';
 
-class WishlistPage extends StatelessWidget {
-  const WishlistPage({super.key});
+class CategoryPage extends StatelessWidget {
+  const CategoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        leading: const AppBackButton(),
         centerTitle: true,
         title: ReusableText(
-          text: AppText.kWishlist,
+          text: context.read<CategoryNotifier>().category,
           style: appStyle(16, Kolors.kPrimary, FontWeight.bold),
         ),
-      ),
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
-        child: ExploreProducts(),
       ),
     );
   }

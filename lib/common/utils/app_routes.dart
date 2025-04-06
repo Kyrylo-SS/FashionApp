@@ -1,8 +1,10 @@
 import 'package:testdf/src/auth/views/login_screen.dart';
 import 'package:testdf/src/categories/views/categories_screen.dart';
+import 'package:testdf/src/categories/views/category_page.dart';
 import 'package:testdf/src/entrypoint/views/entrypoint.dart';
 import 'package:testdf/src/notifications/views/notifications_screen.dart';
 import 'package:testdf/src/onboarding/views/onboarding_screen.dart';
+import 'package:testdf/src/products/view/product_screen.dart';
 import 'package:testdf/src/search/views/search_screen.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:flutter/material.dart';
@@ -51,10 +53,10 @@ final GoRouter _router = GoRouter(
       path: '/categories',
       builder: (context, state) => const CategoriesScreen(),
     ),
-    //  GoRoute(
-    //   path: '/category',
-    //   builder: (context, state) => const CategoryPage(),
-    // ),
+    GoRoute(
+      path: '/category',
+      builder: (context, state) => const CategoryPage(),
+    ),
 
     // GoRoute(
     //   path: '/addaddress',
@@ -89,14 +91,13 @@ final GoRouter _router = GoRouter(
     //   path: '/failed',
     //   builder: (context, state) => const FailedPayment(),
     // ),
-
-    // GoRoute(
-    //   path: '/product/:id',
-    //   builder: (BuildContext context, GoRouterState state) {
-    //     final productId = state.pathParameters['id'];
-    //     return ProductPage(productId: productId.toString());
-    //   },
-    // ),
+    GoRoute(
+      path: '/product/:id',
+      builder: (BuildContext context, GoRouterState state) {
+        final productId = state.pathParameters['id'];
+        return ProductScreen(productId: productId.toString());
+      },
+    ),
   ],
 );
 

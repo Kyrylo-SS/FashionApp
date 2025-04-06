@@ -19,7 +19,7 @@ class HomeHeader extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            GoRouter.of(context).go('/categories');
+            context.push('/categories');
           },
           child: ReusableText(
             text: AppText.kViewAll,
