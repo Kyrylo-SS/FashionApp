@@ -5,6 +5,9 @@ import 'package:testdf/src/entrypoint/views/entrypoint.dart';
 import 'package:testdf/src/notifications/views/notifications_screen.dart';
 import 'package:testdf/src/onboarding/views/onboarding_screen.dart';
 import 'package:testdf/src/products/view/product_screen.dart';
+import 'package:testdf/src/profile/views/orders_screen.dart';
+import 'package:testdf/src/profile/views/policy_screen.dart';
+import 'package:testdf/src/profile/views/shipping_address_screen.dart';
 import 'package:testdf/src/search/views/search_screen.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:flutter/material.dart';
@@ -26,10 +29,7 @@ final GoRouter _router = GoRouter(
     //   path: '/review',
     //   builder: (context, state) => const ReviewsPage(),
     // ),
-    // GoRoute(
-    //   path: '/policy',
-    //   builder: (context, state) => const PolicyPage(),
-    // ),
+    GoRoute(path: '/policy', builder: (context, state) => const PolicyScreen()),
     // GoRoute(
     //   path: '/verification',
     //   builder: (context, state) => const VerificationPage(),
@@ -39,10 +39,7 @@ final GoRouter _router = GoRouter(
     //   path: '/help',
     //   builder: (context, state) => const HelpCenterPage(),
     // ),
-    // GoRoute(
-    //   path: '/orders',
-    //   builder: (context, state) => const OrdersPage(),
-    // ),
+    GoRoute(path: '/orders', builder: (context, state) => const OrdersScreen()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
 
     // GoRoute(
@@ -62,11 +59,10 @@ final GoRouter _router = GoRouter(
     //   path: '/addaddress',
     //   builder: (context, state) => const AddAddress(),
     // ),
-
-    // GoRoute(
-    //   path: '/addresses',
-    //   builder: (context, state) => const AddressesListPage(),
-    // ),
+    GoRoute(
+      path: '/addresses',
+      builder: (context, state) => const ShippingAddressScreen(),
+    ),
     GoRoute(
       path: '/notifications',
       builder: (context, state) => const NotificationsScreen(),

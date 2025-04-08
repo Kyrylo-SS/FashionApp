@@ -2,26 +2,21 @@ import 'package:testdf/common/utils/kcolors.dart';
 import 'package:testdf/common/widgets/app_style.dart';
 import 'package:flutter/cupertino.dart';
 
-void showErrorPopup(BuildContext context, String errorMessage, String? title,
-    bool? removeCancel) {
+void showErrorPopup(
+  BuildContext context,
+  String errorMessage,
+  String? title,
+  bool? removeCancel,
+) {
   showCupertinoModalPopup(
     context: context,
     builder: (BuildContext context) {
       return CupertinoActionSheet(
         title: Text(
           title ?? 'Error',
-          style: appStyle(
-            18.0,
-            Kolors.kGrayLight,
-            FontWeight.bold,
-          ),
+          style: appStyle(18.0, Kolors.kRed, FontWeight.bold),
         ),
-        message: Text(
-          errorMessage,
-          style: const TextStyle(
-            fontSize: 16.0,
-          ),
-        ),
+        message: Text(errorMessage, style: const TextStyle(fontSize: 16.0)),
         actions: <Widget>[
           CupertinoActionSheetAction(
             onPressed: () {
@@ -30,15 +25,16 @@ void showErrorPopup(BuildContext context, String errorMessage, String? title,
             child: const Text('OK'),
           ),
         ],
-        cancelButton: removeCancel == null
-            ? CupertinoActionSheetAction(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                isDefaultAction: true,
-                child: const Text('Cancel'),
-              )
-            : const SizedBox.shrink(),
+        cancelButton:
+            removeCancel == null
+                ? CupertinoActionSheetAction(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  isDefaultAction: true,
+                  child: const Text('Cancel'),
+                )
+                : const SizedBox.shrink(),
       );
     },
   );

@@ -9,6 +9,7 @@ import 'package:testdf/src/categories/controllers/category_notifier.dart';
 import 'package:testdf/src/entrypoint/controllers/bottom_tab_notifier.dart';
 import 'package:testdf/src/home/controllers/home_tab_notifier.dart';
 import 'package:testdf/src/onboarding/controllers/onboarding_notifier.dart';
+import 'package:testdf/src/products/controllers/colors_sizes_notifier.dart';
 import 'package:testdf/src/products/controllers/product_notifier.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +28,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => CategoryNotifier()),
         ChangeNotifierProvider(create: (_) => HomeTabNotifier()),
         ChangeNotifierProvider(create: (_) => ProductNotifier()),
+        ChangeNotifierProvider(create: (_) => ColorSizesNotifier()),
       ],
       child: const MyApp(),
     ),

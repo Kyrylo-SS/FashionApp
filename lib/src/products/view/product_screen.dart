@@ -4,13 +4,22 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:testdf/common/services/storage.dart';
 import 'package:testdf/common/utils/kcolors.dart';
+import 'package:testdf/common/utils/kstrings.dart';
 import 'package:testdf/common/widgets/app_style.dart';
 import 'package:testdf/common/widgets/back_button.dart';
+import 'package:testdf/common/widgets/error_modal.dart';
+import 'package:testdf/common/widgets/login_bottom_sheet.dart';
 import 'package:testdf/common/widgets/reusable_text.dart';
 import 'package:testdf/const/constants.dart';
+import 'package:testdf/src/products/controllers/colors_sizes_notifier.dart';
 import 'package:testdf/src/products/controllers/product_notifier.dart';
+import 'package:testdf/src/products/widgets/color_selection_widget.dart';
 import 'package:testdf/src/products/widgets/expandable_text.dart';
+import 'package:testdf/src/products/widgets/product_bottom_bar.dart';
+import 'package:testdf/src/products/widgets/product_sizes_widget.dart';
+import 'package:testdf/src/products/widgets/similar_products.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key, required this.productId});
@@ -19,6 +28,7 @@ class ProductScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? accessToken = Storage().getString('accessToken');
     return Consumer<ProductNotifier>(
       builder: (context, productNotifier, child) {
         return Scaffold(
@@ -122,13 +132,80 @@ class ProductScreen extends StatelessWidget {
               ),
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: ExpandableText(
                     text: productNotifier.product!.description,
                   ),
                 ),
               ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Divider(thickness: .5.h),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ReusableText(
+                    text: "Select Sizes",
+                    style: appStyle(16, Kolors.kDark, FontWeight.w600),
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: ProductSizesWidget(),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ReusableText(
+                    text: "Select Color",
+                    style: appStyle(16, Kolors.kDark, FontWeight.w600),
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: ColorSelectionWidget(),
+                ),
+              ),
+              SliverToBoxAdapter(child: SizedBox(height: 10.h)),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: ReusableText(
+                    text: "Similar Products",
+                    style: appStyle(16, Kolors.kDark, FontWeight.w600),
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(child: SimilarProducts()),
             ],
+          ),
+          bottomNavigationBar: ProductBottomBar(
+            onPressed: () {
+              if (accessToken == null) {
+                loginBottomSheet(context);
+              } else {
+                if (context.read<ColorSizesNotifier>().color == '' ||
+                    context.read<ColorSizesNotifier>().sizes == '') {
+                  showErrorPopup(
+                    context,
+                    AppText.kCartErrorString,
+                    "Error Adding to Cart",
+                    true,
+                  );
+                } else {}
+              }
+            },
+            price: productNotifier.product!.price.toStringAsFixed(2),
           ),
         );
       },
