@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:testdf/common/services/storage.dart';
 import 'package:testdf/common/utils/kcolors.dart';
 import 'package:testdf/common/utils/kstrings.dart';
 import 'package:testdf/common/widgets/app_style.dart';
 import 'package:testdf/common/widgets/reusable_text.dart';
+import 'package:testdf/src/auth/views/login_screen.dart';
 import 'package:testdf/src/products/widgets/explore_products.dart';
 
 class WishlistPage extends StatelessWidget {
@@ -10,6 +12,11 @@ class WishlistPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? accessToken = Storage().getString('accessToken');
+
+    if (accessToken == null) {
+      return const LoginScreen();
+    }
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,

@@ -10,19 +10,19 @@ import 'package:testdf/common/widgets/custom_button.dart';
 import 'package:testdf/common/widgets/email_textfield.dart';
 import 'package:testdf/common/widgets/password_field.dart';
 import 'package:testdf/src/auth/controllers/auth_notifier.dart';
-import 'package:testdf/src/auth/models/login_model.dart';
-import 'package:testdf/src/entrypoint/controllers/bottom_tab_notifier.dart';
+import 'package:testdf/src/auth/models/registration_model.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   late final TextEditingController _usernameController =
       TextEditingController();
+  late final TextEditingController _emailController = TextEditingController();
   late final TextEditingController _passwordController =
       TextEditingController();
 
@@ -41,11 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: AppBackButton(
-          onTap: () {
-            context.go('/home');
-          },
-        ),
+        leading: const AppBackButton(),
         elevation: 0,
         backgroundColor: Colors.white,
       ),
@@ -59,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           SizedBox(height: 10.h),
           Text(
-            "Hi! Welcome back. You've been missed",
+            "Hi! Welcome",
             style: appStyle(13, Kolors.kGray, FontWeight.normal),
             textAlign: TextAlign.center,
           ),
@@ -70,7 +66,6 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 EmailTextField(
                   radius: 25,
-                  focusNode: _passwordNode,
                   hintText: "Username",
                   controller: _usernameController,
                   prefixIcon: const Icon(
@@ -84,13 +79,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   },
                 ),
                 SizedBox(height: 25.h),
+                EmailTextField(
+                  radius: 25,
+                  focusNode: _passwordNode,
+                  hintText: "Email",
+                  controller: _emailController,
+                  prefixIcon: const Icon(
+                    CupertinoIcons.mail,
+                    size: 20,
+                    color: Kolors.kGray,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  onEditingComplete: () {
+                    FocusScope.of(context).requestFocus(_passwordNode);
+                  },
+                ),
+                SizedBox(height: 25.h),
                 PasswordField(
                   controller: _passwordController,
                   focusNode: _passwordNode,
                   radius: 25,
                 ),
                 SizedBox(height: 20.h),
-                context.watch<AuthNotifier>().isLoading
+                context.watch<AuthNotifier>().isRLoading
                     ? const Center(
                       child: CircularProgressIndicator(
                         backgroundColor: Kolors.kPrimary,
@@ -101,15 +112,21 @@ class _LoginScreenState extends State<LoginScreen> {
                     )
                     : GradientBtn(
                       onTap: () {
-                        LoginModel model = LoginModel(
+                        RegistrationModel model = RegistrationModel(
                           password: _passwordController.text,
                           username: _usernameController.text,
+                          email: _emailController.text,
                         );
-                        String data = loginModelToJson(model);
 
-                        context.read<AuthNotifier>().loginFunc(data, context);
+                        String data = registrationModelToJson(model);
+                        print(data);
+
+                        context.read<AuthNotifier>().registrationFunc(
+                          data,
+                          context,
+                        );
                       },
-                      text: "L O G I N",
+                      text: "S I G N U P",
                       btnWidth: ScreenUtil().screenWidth,
                       btnHieght: 40,
                       radius: 20,
@@ -118,23 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: SizedBox(
-        height: 130.h,
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 75),
-            child: GestureDetector(
-              onTap: () {
-                context.push('/register');
-              },
-              child: Text(
-                "Do not have an account? Register a new one",
-                style: appStyle(12, Colors.blue, FontWeight.normal),
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }

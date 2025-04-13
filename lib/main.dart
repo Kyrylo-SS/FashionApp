@@ -5,6 +5,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:testdf/common/utils/app_routes.dart';
 import 'package:testdf/common/utils/environment.dart';
 import 'package:testdf/common/utils/kstrings.dart';
+import 'package:testdf/src/auth/controllers/auth_notifier.dart';
+import 'package:testdf/src/auth/controllers/password_notifier.dart';
 import 'package:testdf/src/categories/controllers/category_notifier.dart';
 import 'package:testdf/src/entrypoint/controllers/bottom_tab_notifier.dart';
 import 'package:testdf/src/home/controllers/home_tab_notifier.dart';
@@ -29,6 +31,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => HomeTabNotifier()),
         ChangeNotifierProvider(create: (_) => ProductNotifier()),
         ChangeNotifierProvider(create: (_) => ColorSizesNotifier()),
+        ChangeNotifierProvider(create: (_) => PasswordNotifier()),
+        ChangeNotifierProvider(create: (_) => AuthNotifier()),
       ],
       child: const MyApp(),
     ),
@@ -77,18 +81,6 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              Environment.appBaseUrl,
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
       ),
     );
   }

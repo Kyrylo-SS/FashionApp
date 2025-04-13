@@ -1,4 +1,5 @@
 import 'package:testdf/src/auth/views/login_screen.dart';
+import 'package:testdf/src/auth/views/registration_screen.dart';
 import 'package:testdf/src/categories/views/categories_screen.dart';
 import 'package:testdf/src/categories/views/category_page.dart';
 import 'package:testdf/src/entrypoint/views/entrypoint.dart';
@@ -42,10 +43,10 @@ final GoRouter _router = GoRouter(
     GoRoute(path: '/orders', builder: (context, state) => const OrdersScreen()),
     GoRoute(path: '/login', builder: (context, state) => const LoginScreen()),
 
-    // GoRoute(
-    //   path: '/register',
-    //   builder: (context, state) => const RegistrationPage(),
-    // ),
+    GoRoute(
+      path: '/register',
+      builder: (context, state) => const RegistrationScreen(),
+    ),
     GoRoute(
       path: '/categories',
       builder: (context, state) => const CategoriesScreen(),
