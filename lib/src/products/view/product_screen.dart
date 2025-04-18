@@ -106,7 +106,7 @@ class ProductScreen extends StatelessWidget {
                           ),
                           SizedBox(width: 5.w),
                           ReusableText(
-                            text: productNotifier.product!.ratings
+                            text: productNotifier.product!.rating
                                 .toStringAsFixed(1),
                             style: appStyle(
                               13,

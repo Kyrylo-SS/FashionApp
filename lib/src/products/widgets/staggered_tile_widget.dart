@@ -89,7 +89,7 @@ class StaggeredTileWidget extends StatelessWidget {
                         ),
                         SizedBox(width: 5.w),
                         ReusableText(
-                          text: product.ratings.toStringAsFixed(1),
+                          text: product.rating.toStringAsFixed(1),
                           style: appStyle(13, Kolors.kGray, FontWeight.normal),
                         ),
                       ],

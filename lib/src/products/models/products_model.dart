@@ -13,7 +13,7 @@ class Products {
   final String description;
   final bool isFeatured;
   final String clothesType;
-  final double ratings;
+  final double rating;
   final List<String> colors;
   final List<String> imageUrls;
   final List<String> sizes;
@@ -28,7 +28,7 @@ class Products {
     required this.description,
     required this.isFeatured,
     required this.clothesType,
-    required this.ratings,
+    required this.rating,
     required this.colors,
     required this.imageUrls,
     required this.sizes,
@@ -44,7 +44,7 @@ class Products {
     description: json["description"],
     isFeatured: json["is_featured"],
     clothesType: json["clothesType"],
-    ratings: json["ratings"]?.toDouble(),
+    rating: json["rating"]?.toDouble(),
     colors: List<String>.from(json["colors"].map((x) => x)),
     imageUrls: List<String>.from(json["imageUrls"].map((x) => x)),
     sizes: List<String>.from(json["sizes"].map((x) => x)),
@@ -60,7 +60,7 @@ class Products {
     "description": description,
     "is_featured": isFeatured,
     "clothesType": clothesType,
-    "ratings": ratings,
+    "rating": rating,
     "colors": List<dynamic>.from(colors.map((x) => x)),
     "imageUrls": List<dynamic>.from(imageUrls.map((x) => x)),
     "sizes": List<dynamic>.from(sizes.map((x) => x)),
