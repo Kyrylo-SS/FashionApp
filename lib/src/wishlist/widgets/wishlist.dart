@@ -7,21 +7,20 @@ import 'package:testdf/common/services/storage.dart';
 import 'package:testdf/common/widgets/login_bottom_sheet.dart';
 import 'package:testdf/common/widgets/shimmers/list_shimmer.dart';
 import 'package:testdf/const/resource.dart';
-import 'package:testdf/src/home/controllers/home_tab_notifier.dart';
-import 'package:testdf/src/products/hooks/fetch_products.dart';
 import 'package:testdf/src/products/widgets/staggered_tile_widget.dart';
 import 'package:testdf/src/wishlist/controllers/wishlist_notifier.dart';
-import 'package:testdf/src/wishlist/widgets/wishlist.dart';
+import 'package:testdf/src/wishlist/hooks/fetch_wishlist.dart';
 
-class ExploreProducts extends HookWidget {
-  const ExploreProducts({super.key});
+class WishListWidget extends HookWidget {
+  const WishListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     String? accessToken = Storage().getString('accessToken');
-    final results = fetchProducts(context.watch<HomeTabNotifier>().queryType);
+    final results = fetchWishlist();
     final products = results.products;
     final isLoading = results.isLoading;
+    final refetch = results.refetch;
     final error = results.error;
 
     if (isLoading) {
@@ -31,8 +30,7 @@ class ExploreProducts extends HookWidget {
       );
     }
     return products.isEmpty
-        ? Padding(
-          padding: EdgeInsets.all(25),
+        ? Center(
           child: Image.asset(
             R.ASSETS_IMAGES_EMPTY_PNG,
             height: ScreenUtil().screenHeight * .3,
@@ -57,7 +55,7 @@ class ExploreProducts extends HookWidget {
                     } else {
                       context.read<WishlistNotifier>().addRemoveWishlist(
                         product.id,
-                        () {},
+                        refetch,
                       );
                     }
                   },

@@ -20,6 +20,7 @@ import 'package:testdf/src/products/widgets/expandable_text.dart';
 import 'package:testdf/src/products/widgets/product_bottom_bar.dart';
 import 'package:testdf/src/products/widgets/product_sizes_widget.dart';
 import 'package:testdf/src/products/widgets/similar_products.dart';
+import 'package:testdf/src/wishlist/controllers/wishlist_notifier.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key, required this.productId});
@@ -44,16 +45,36 @@ class ProductScreen extends StatelessWidget {
                 actions: [
                   Padding(
                     padding: const EdgeInsets.only(right: 16),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: const CircleAvatar(
-                        backgroundColor: Kolors.kSecondaryLight,
-                        child: Icon(
-                          AntDesign.heart,
-                          color: Kolors.kRed,
-                          size: 18,
-                        ),
-                      ),
+                    child: Consumer<WishlistNotifier>(
+                      builder: (context, wishlistNotifier, child) {
+                        return GestureDetector(
+                          onTap: () {
+                            if (accessToken == null) {
+                              loginBottomSheet(context);
+                            } else {
+                              context
+                                  .read<WishlistNotifier>()
+                                  .addRemoveWishlist(
+                                    productNotifier.product!.id,
+                                    () {},
+                                  );
+                            }
+                          },
+                          child: CircleAvatar(
+                            backgroundColor: Kolors.kSecondaryLight,
+                            child: Icon(
+                              AntDesign.heart,
+                              color:
+                                  wishlistNotifier.wishlist.contains(
+                                        productNotifier.product!.id,
+                                      )
+                                      ? Kolors.kRed
+                                      : Kolors.kGray,
+                              size: 18,
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ],

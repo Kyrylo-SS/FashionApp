@@ -13,8 +13,10 @@ import 'package:testdf/src/home/controllers/home_tab_notifier.dart';
 import 'package:testdf/src/onboarding/controllers/onboarding_notifier.dart';
 import 'package:testdf/src/products/controllers/colors_sizes_notifier.dart';
 import 'package:testdf/src/products/controllers/product_notifier.dart';
+import 'package:testdf/src/search/controllers/search_notifier.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:provider/provider.dart';
+import 'package:testdf/src/wishlist/controllers/wishlist_notifier.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +35,8 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ColorSizesNotifier()),
         ChangeNotifierProvider(create: (_) => PasswordNotifier()),
         ChangeNotifierProvider(create: (_) => AuthNotifier()),
+        ChangeNotifierProvider(create: (_) => SearchNotifier()),
+        ChangeNotifierProvider(create: (_) => WishlistNotifier()),
       ],
       child: const MyApp(),
     ),

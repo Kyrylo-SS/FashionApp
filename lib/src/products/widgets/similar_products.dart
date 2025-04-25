@@ -12,6 +12,7 @@ import 'package:testdf/src/home/controllers/home_tab_notifier.dart';
 import 'package:testdf/src/products/controllers/product_notifier.dart';
 import 'package:testdf/src/products/hooks/fetch_similar_products.dart';
 import 'package:testdf/src/products/widgets/staggered_tile_widget.dart';
+import 'package:testdf/src/wishlist/controllers/wishlist_notifier.dart';
 
 class SimilarProducts extends HookWidget {
   const SimilarProducts({super.key});
@@ -53,7 +54,12 @@ class SimilarProducts extends HookWidget {
                   onTap: () {
                     if (accessToken == null) {
                       loginBottomSheet(context);
-                    } else {}
+                    } else {
+                      context.read<WishlistNotifier>().addRemoveWishlist(
+                        product.id,
+                        () {},
+                      );
+                    }
                   },
                   i: i,
                   product: product,

@@ -5,7 +5,7 @@ import 'package:testdf/common/utils/kstrings.dart';
 import 'package:testdf/common/widgets/app_style.dart';
 import 'package:testdf/common/widgets/reusable_text.dart';
 import 'package:testdf/src/auth/views/login_screen.dart';
-import 'package:testdf/src/products/widgets/explore_products.dart';
+import 'package:testdf/src/wishlist/widgets/wishlist.dart';
 
 class WishlistPage extends StatelessWidget {
   const WishlistPage({super.key});
@@ -28,7 +28,7 @@ class WishlistPage extends StatelessWidget {
       ),
       body: const Padding(
         padding: EdgeInsets.all(8.0),
-        child: ExploreProducts(),
+        child: WishListWidget(),
       ),
     );
   }
