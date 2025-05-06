@@ -13,6 +13,8 @@ import 'package:testdf/common/widgets/error_modal.dart';
 import 'package:testdf/common/widgets/login_bottom_sheet.dart';
 import 'package:testdf/common/widgets/reusable_text.dart';
 import 'package:testdf/const/constants.dart';
+import 'package:testdf/src/cart/controllers/cart_notifier.dart';
+import 'package:testdf/src/cart/models/create_cart_model.dart';
 import 'package:testdf/src/products/controllers/colors_sizes_notifier.dart';
 import 'package:testdf/src/products/controllers/product_notifier.dart';
 import 'package:testdf/src/products/widgets/color_selection_widget.dart';
@@ -223,7 +225,18 @@ class ProductScreen extends StatelessWidget {
                     "Error Adding to Cart",
                     true,
                   );
-                } else {}
+                } else {
+                  CreateCartModel data = CreateCartModel(
+                    product: context.read<ProductNotifier>().product!.id,
+                    quantity: 1,
+                    size: context.read<ColorSizesNotifier>().sizes,
+                    color: context.read<ColorSizesNotifier>().color,
+                  );
+
+                  String cartData = createCartModelToJson(data);
+
+                  context.read<CartNotifier>().addToCart(cartData, context);
+                }
               }
             },
             price: productNotifier.product!.price.toStringAsFixed(2),

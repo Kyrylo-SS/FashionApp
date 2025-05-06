@@ -2,6 +2,7 @@ import 'package:testdf/src/auth/views/login_screen.dart';
 import 'package:testdf/src/auth/views/registration_screen.dart';
 import 'package:testdf/src/categories/views/categories_screen.dart';
 import 'package:testdf/src/categories/views/category_page.dart';
+import 'package:testdf/src/checkout/views/checkout_screen.dart';
 import 'package:testdf/src/entrypoint/views/entrypoint.dart';
 import 'package:testdf/src/notifications/views/notifications_screen.dart';
 import 'package:testdf/src/onboarding/views/onboarding_screen.dart';
@@ -73,11 +74,10 @@ final GoRouter _router = GoRouter(
     //   path: '/tracking',
     //   builder: (context, state) => const TrackOrderPage(),
     // ),
-
-    // GoRoute(
-    //   path: '/checkout',
-    //   builder: (context, state) => const CheckoutPage(),
-    // ),
+    GoRoute(
+      path: '/checkout',
+      builder: (context, state) => const CheckoutPage(),
+    ),
 
     //   GoRoute(
     //   path: '/successful',

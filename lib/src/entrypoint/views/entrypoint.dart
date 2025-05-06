@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:testdf/common/utils/kcolors.dart';
+import 'package:testdf/src/cart/hooks/fetch_cart_count.dart';
 import 'package:testdf/src/cart/views/cart_screen.dart';
 import 'package:testdf/src/entrypoint/controllers/bottom_tab_notifier.dart';
 import 'package:testdf/src/home/views/home_screen.dart';
 import 'package:testdf/src/profile/views/profile_screen.dart';
 import 'package:testdf/src/wishlist/views/wishlist_screen.dart';
 
-class AppEntryPoint extends StatelessWidget {
+class AppEntryPoint extends HookWidget {
   AppEntryPoint({super.key});
 
   List<Widget> pageList = [
@@ -20,6 +22,8 @@ class AppEntryPoint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final result = fetchCartCount(context);
+    final data = result.count;
     return Consumer<TabIndexNotifier>(
       builder:
           (context, tabIndexNotifier, child) => Scaffold(
@@ -69,17 +73,17 @@ class AppEntryPoint extends StatelessWidget {
                       BottomNavigationBarItem(
                         icon:
                             tabIndexNotifier.index == 2
-                                ? const Badge(
-                                  label: Text("9"),
-                                  child: Icon(
+                                ? Badge(
+                                  label: Text(data.cartCount.toString()),
+                                  child: const Icon(
                                     MaterialCommunityIcons.shopping,
                                     color: Kolors.kPrimary,
                                     size: 28,
                                   ),
                                 )
-                                : const Badge(
-                                  label: Text("9"),
-                                  child: Icon(
+                                : Badge(
+                                  label: Text(data.cartCount.toString()),
+                                  child: const Icon(
                                     MaterialCommunityIcons.shopping_outline,
                                   ),
                                 ),

@@ -7,6 +7,7 @@ import 'package:testdf/common/utils/environment.dart';
 import 'package:testdf/common/utils/kstrings.dart';
 import 'package:testdf/src/auth/controllers/auth_notifier.dart';
 import 'package:testdf/src/auth/controllers/password_notifier.dart';
+import 'package:testdf/src/cart/controllers/cart_notifier.dart';
 import 'package:testdf/src/categories/controllers/category_notifier.dart';
 import 'package:testdf/src/entrypoint/controllers/bottom_tab_notifier.dart';
 import 'package:testdf/src/home/controllers/home_tab_notifier.dart';
@@ -37,6 +38,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => AuthNotifier()),
         ChangeNotifierProvider(create: (_) => SearchNotifier()),
         ChangeNotifierProvider(create: (_) => WishlistNotifier()),
+        ChangeNotifierProvider(create: (_) => CartNotifier()),
       ],
       child: const MyApp(),
     ),
