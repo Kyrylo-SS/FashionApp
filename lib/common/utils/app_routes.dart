@@ -1,3 +1,4 @@
+import 'package:testdf/src/addresses/views/add_address.dart';
 import 'package:testdf/src/auth/views/login_screen.dart';
 import 'package:testdf/src/auth/views/registration_screen.dart';
 import 'package:testdf/src/categories/views/categories_screen.dart';
@@ -9,7 +10,7 @@ import 'package:testdf/src/onboarding/views/onboarding_screen.dart';
 import 'package:testdf/src/products/view/product_screen.dart';
 import 'package:testdf/src/profile/views/orders_screen.dart';
 import 'package:testdf/src/profile/views/policy_screen.dart';
-import 'package:testdf/src/profile/views/shipping_address_screen.dart';
+import 'package:testdf/src/addresses/views/shipping_address_screen.dart';
 import 'package:testdf/src/search/views/search_screen.dart';
 import 'package:testdf/src/splashscreen/views/splashscreen_page.dart';
 import 'package:flutter/material.dart';
@@ -57,10 +58,10 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => const CategoryPage(),
     ),
 
-    // GoRoute(
-    //   path: '/addaddress',
-    //   builder: (context, state) => const AddAddress(),
-    // ),
+    GoRoute(
+      path: '/addaddress',
+      builder: (context, state) => const AddAddress(),
+    ),
     GoRoute(
       path: '/addresses',
       builder: (context, state) => const ShippingAddressScreen(),

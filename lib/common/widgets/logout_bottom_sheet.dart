@@ -16,36 +16,29 @@ Future<dynamic> logoutBottomSheet(BuildContext context) {
         decoration: BoxDecoration(borderRadius: kRadiusTop),
         child: ListView(
           children: [
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 10.h),
             Center(
-                child: ReusableText(
-                    text: AppText.kLogout,
-                    style: appStyle(16, Kolors.kPrimary, FontWeight.w500))),
-            SizedBox(
-              height: 10.h,
+              child: ReusableText(
+                text: AppText.kLogout,
+                style: appStyle(16, Kolors.kPrimary, FontWeight.w500),
+              ),
             ),
-            Divider(
-              color: Kolors.kGrayLight,
-              thickness: 0.5.h,
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 10.h),
+            Divider(color: Kolors.kGrayLight, thickness: 0.5.h),
+            SizedBox(height: 10.h),
             Center(
-                child: ReusableText(
-                    text: AppText.kLogoutText,
-                    style: appStyle(14, Kolors.kGray, FontWeight.w500))),
-            SizedBox(
-              height: 20.h,
+              child: ReusableText(
+                text: AppText.kLogoutText,
+                style: appStyle(14, Kolors.kGray, FontWeight.w500),
+              ),
             ),
+            SizedBox(height: 20.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GradientBtn(
+                  CustomButton(
                     text: "Cancel",
                     borderColor: Kolors.kDark,
                     btnColor: Kolors.kWhite,
@@ -54,7 +47,7 @@ Future<dynamic> logoutBottomSheet(BuildContext context) {
                     radius: 16,
                     btnWidth: ScreenUtil().screenWidth / 2.2,
                   ),
-                  GradientBtn(
+                  CustomButton(
                     text: "Yes, Logout",
                     onTap: () {
                       // Storage().removeKey('accessToken');
@@ -68,7 +61,7 @@ Future<dynamic> logoutBottomSheet(BuildContext context) {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       );

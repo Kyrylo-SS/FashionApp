@@ -5,6 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:testdf/common/utils/app_routes.dart';
 import 'package:testdf/common/utils/environment.dart';
 import 'package:testdf/common/utils/kstrings.dart';
+import 'package:testdf/src/addresses/contollers/address_notifier.dart';
 import 'package:testdf/src/auth/controllers/auth_notifier.dart';
 import 'package:testdf/src/auth/controllers/password_notifier.dart';
 import 'package:testdf/src/cart/controllers/cart_notifier.dart';
@@ -39,6 +40,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => SearchNotifier()),
         ChangeNotifierProvider(create: (_) => WishlistNotifier()),
         ChangeNotifierProvider(create: (_) => CartNotifier()),
+        ChangeNotifierProvider(create: (_) => AddressNotifier()),
       ],
       child: const MyApp(),
     ),
@@ -67,27 +69,6 @@ class MyApp extends StatelessWidget {
         );
       },
       child: const SplashScreen(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
     );
   }
 }

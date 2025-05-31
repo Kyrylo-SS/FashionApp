@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:testdf/common/utils/kcolors.dart';
@@ -6,6 +5,7 @@ import 'package:testdf/common/utils/kstrings.dart';
 import 'package:testdf/common/widgets/app_style.dart';
 import 'package:testdf/common/widgets/reusable_text.dart';
 import 'package:testdf/const/constants.dart';
+import 'package:testdf/src/addresses/widgets/checkout_address_list.dart';
 
 Future<dynamic> changeAddressBottomSheet(BuildContext context) {
   return showModalBottomSheet<void>(
@@ -18,33 +18,26 @@ Future<dynamic> changeAddressBottomSheet(BuildContext context) {
           padding: const EdgeInsets.symmetric(horizontal: 12),
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 10.h),
             Center(
-                child: ReusableText(
-                    text: AppText.kCheckoutAddress,
-                    style: appStyle(16, Kolors.kPrimary, FontWeight.w500))),
-            SizedBox(
-              height: 10.h,
+              child: ReusableText(
+                text: AppText.kCheckoutAddress,
+                style: appStyle(16, Kolors.kPrimary, FontWeight.w500),
+              ),
             ),
-            Divider(
-              color: Kolors.kGrayLight,
-              thickness: 0.5.h,
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 10.h),
+            Divider(color: Kolors.kGrayLight, thickness: 0.5.h),
+            SizedBox(height: 10.h),
             ReusableText(
-                text: AppText.kCheckoutAddressText,
-                style: appStyle(13, Kolors.kGray, FontWeight.w500)),
-            SizedBox(
-              height: 10.h,
+              text: AppText.kCheckoutAddressText,
+              style: appStyle(13, Kolors.kGray, FontWeight.w500),
             ),
-            ///TODO: Add Address Selection
-            // SizedBox(
-            //   height: ScreenUtil().screenHeight*0.6,
-            //   child: const CheckoutAddressSelection())
+            SizedBox(height: 10.h),
+
+            SizedBox(
+              height: ScreenUtil().screenHeight * 0.6,
+              child: const CheckoutAddressList(),
+            ),
           ],
         ),
       );

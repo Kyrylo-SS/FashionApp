@@ -1,17 +1,20 @@
-
 import 'package:testdf/common/utils/kcolors.dart';
 import 'package:testdf/common/widgets/app_style.dart';
 import 'package:testdf/common/widgets/reusable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class GradientBtn extends StatelessWidget {
-  const GradientBtn({
+class CustomButton extends StatelessWidget {
+  const CustomButton({
     super.key,
     this.onTap,
     this.btnWidth,
     required this.text,
-    this.btnHieght, this.textSize, this.borderColor, this.radius, this.btnColor,
+    this.btnHieght,
+    this.textSize,
+    this.borderColor,
+    this.radius,
+    this.btnColor,
   });
   final void Function()? onTap;
   final double? btnWidth;
@@ -30,15 +33,21 @@ class GradientBtn extends StatelessWidget {
         width: btnWidth ?? ScreenUtil().screenWidth / 2,
         height: btnHieght ?? 25.h,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius??6),
-          color: btnColor?? Kolors.kPrimaryLight,
-          border: Border.all(width: 0.5.h, color:borderColor?? Kolors.kWhite),
+          borderRadius: BorderRadius.circular(radius ?? 6),
+          color: btnColor ?? Kolors.kPrimaryLight,
+          border: Border.all(width: 0.5.h, color: borderColor ?? Kolors.kWhite),
         ),
         child: Center(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 3.w),
             child: ReusableText(
-                text: text, style: appStyle(textSize??13, borderColor??Kolors.kWhite, FontWeight.w500)),
+              text: text,
+              style: appStyle(
+                textSize ?? 13,
+                borderColor ?? Kolors.kWhite,
+                FontWeight.w500,
+              ),
+            ),
           ),
         ),
       ),

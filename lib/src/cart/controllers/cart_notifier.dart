@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
@@ -149,5 +151,42 @@ class CartNotifier with ChangeNotifier {
       tp += item.product.price * item.quantity;
     }
     return tp;
+  }
+
+  String _paymentUrl = '';
+
+  String get paymentUrl => _paymentUrl;
+
+  void setPaymentUrl(String url) {
+    _paymentUrl = url;
+    notifyListeners();
+  }
+
+  String _success = '';
+
+  String get success => _success;
+
+  void setSuccessUrl(String url) {
+    _success = url;
+    notifyListeners();
+  }
+
+  void createCheckout(String data) async {
+    try {
+      Uri url = Uri.parse(
+        "${Environment.paymentBaseUrl}/stripe/create-checkout-session",
+      );
+      final response = await http.post(
+        url,
+        headers: {'Content-Type': 'application/json'},
+        body: data,
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+
+        setPaymentUrl(responseData['url']);
+      }
+    } catch (e) {}
   }
 }

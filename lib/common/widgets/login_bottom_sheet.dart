@@ -18,42 +18,35 @@ Future<dynamic> loginBottomSheet(BuildContext context) {
         child: ListView(
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 10.h),
             Center(
-                child: ReusableText(
-                    text: AppText.kLogin,
-                    style: appStyle(16, Kolors.kPrimary, FontWeight.w500))),
-            SizedBox(
-              height: 10.h,
+              child: ReusableText(
+                text: AppText.kLogin,
+                style: appStyle(16, Kolors.kPrimary, FontWeight.w500),
+              ),
             ),
-            Divider(
-              color: Kolors.kGrayLight,
-              thickness: 0.5.h,
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
+            SizedBox(height: 10.h),
+            Divider(color: Kolors.kGrayLight, thickness: 0.5.h),
+            SizedBox(height: 10.h),
             Center(
-                child: ReusableText(
-                    text: AppText.kLoginText,
-                    style: appStyle(14, Kolors.kGray, FontWeight.w500))),
-            SizedBox(
-              height: 20.h,
+              child: ReusableText(
+                text: AppText.kLoginText,
+                style: appStyle(14, Kolors.kGray, FontWeight.w500),
+              ),
             ),
+            SizedBox(height: 20.h),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: GradientBtn(
+              child: CustomButton(
                 text: "Proceed to Login",
                 onTap: () {
                   context.go("/login");
                 },
                 btnHieght: 35.h,
                 radius: 16,
-                btnWidth: ScreenUtil().screenWidth ,
+                btnWidth: ScreenUtil().screenWidth,
               ),
-            )
+            ),
           ],
         ),
       );

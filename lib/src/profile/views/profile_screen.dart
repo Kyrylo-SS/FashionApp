@@ -96,7 +96,7 @@ class ProfilePage extends StatelessWidget {
               SizedBox(height: 30.h),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
-                child: GradientBtn(
+                child: CustomButton(
                   onTap: () {
                     Storage().removeKey('accessToken');
                     context.read<TabIndexNotifier>().setIndex(0);

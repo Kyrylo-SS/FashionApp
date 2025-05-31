@@ -99,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     )
-                    : GradientBtn(
+                    : CustomButton(
                       onTap: () {
                         LoginModel model = LoginModel(
                           password: _passwordController.text,

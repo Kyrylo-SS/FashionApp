@@ -110,7 +110,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                     )
-                    : GradientBtn(
+                    : CustomButton(
                       onTap: () {
                         RegistrationModel model = RegistrationModel(
                           password: _passwordController.text,
